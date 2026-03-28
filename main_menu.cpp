@@ -11,6 +11,7 @@
 #include <iomanip>
 #include "model.h"
 #include "trans_class.h"
+#include "SalesReport.h"
 
 using namespace std;
 
@@ -19,6 +20,7 @@ int main() {
 import(); //Function that imports the data into an array for use
 load_orders();
 importRainbow();
+generateSalesReport();
     while (true) {
 
         //Menu logic, prompts user to enter a number then runs programs
