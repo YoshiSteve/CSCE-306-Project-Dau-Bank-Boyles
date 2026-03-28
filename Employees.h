@@ -80,7 +80,7 @@ public:
     void displaySubordinates();
 }; 
 double Employee::total_Sales(){
-    double total; 
+    double total = 0; 
     for(auto element:sales){
         total+= std::stod(element.get_payment()); 
     }
@@ -100,7 +100,7 @@ void Employee:: display_Sales(){
 
 double Supervisor::get_commission(){
     double supTotal=total_Sales() * 0.065; 
-    double empTotal; 
+    double empTotal = 0; 
     
     // calculates total sales from salespeople they supervise
     for (auto element:oversight){
@@ -114,7 +114,7 @@ double Supervisor::get_commission(){
 
 double Manager::get_commission(){
     double manTotal= total_Sales() * 0.065; 
-    double empTotal; 
+    double empTotal = 0; 
 
     // calculates total of supervisor and supervisors salespeoples total commission
     for(auto element:oversee){
