@@ -8,7 +8,8 @@
  * Includes: Customer records (address, name etc.), created random Ids for users. can search and add customers
  *
  */
-
+#ifndef MODEL_H_
+#define MODEL_H_
 #include <iostream>
 #include <cmath>
 #include <fstream>
@@ -240,6 +241,7 @@ void employeeImport(){
     }
 
 }
+#endif
 
 //void load_orders(){
 //	ifstream trans("transactions.txt");
