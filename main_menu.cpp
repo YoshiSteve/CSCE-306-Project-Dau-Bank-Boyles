@@ -18,6 +18,7 @@ using namespace std;
 int main() {
     string option;
 import(); //Function that imports the data into an array for use
+employeeImport();
 load_orders();
 importRainbow();
 generateSalesReport();
@@ -25,7 +26,7 @@ generateSalesReport();
 
         //Menu logic, prompts user to enter a number then runs programs
         cout << "Welcome! Please Type the number of the option you want." << endl;
-        cout << "1. Add a Customer \n" << "2. Search for a customer \n" << "3. Customer Sale \n" << "4. Add to Rainbow Waitlist\n"<<"0. Exit" << endl;
+        cout << "1. Add a Customer \n" << "2. Search for a customer \n" << "3. Customer Sale \n" << "4. Add to Rainbow Waitlist\n" << "5. View Sales Report\n"<<"0. Exit" << endl;
         getline(cin, option);
         if (option == "1") {
             //Add logic
@@ -153,6 +154,10 @@ generateSalesReport();
         	cout<<"Please enter customer ID:"<<endl;
         	cin>>id;
         	orderRainbow(id);
+        }
+
+        else if(option=="5"){
+        	//Add function to display sales report
         }
 
         else if (option == "0") {

@@ -6,7 +6,7 @@
  * Goal : File that includes functions to parse data and edit data
  *
  * Includes: Customer records (address, name etc.), created random Ids for users. can search and add customers
- *
+ * Phase 3 Modifications: Added Employee Import and Search functions
  */
 #ifndef MODEL_H_
 #define MODEL_H_
