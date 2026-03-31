@@ -88,6 +88,7 @@ double Employee::total_Sales(){
 };
 
 void Employee:: display_Sales(){
+    //Function to display information about a sales person
     cout<<"Title:" << title <<" Name:" << name << " Sales ID:"<< salesID << endl;
     cout << "Commission: $" << get_commission() << endl;
     cout << "Sales:" << endl;
