@@ -12,21 +12,22 @@
 #include "model.h"
 #include "trans_class.h"
 #include "SalesReport.h"
-
 using namespace std;
 
 int main() {
-    string option;
+string option;
 import(); //Function that imports the data into an array for use
 employeeImport();
 load_orders();
 importRainbow();
+
 generateSalesReport();
+
     while (true) {
 
         //Menu logic, prompts user to enter a number then runs programs
         cout << "Welcome! Please Type the number of the option you want." << endl;
-        cout << "1. Add a Customer \n" << "2. Search for a customer \n" << "3. Customer Sale \n" << "4. Add to Rainbow Waitlist\n" << "5. View Sales Report\n"<<"0. Exit" << endl;
+        cout << "1. Add a Customer \n" << "2. Search for a customer \n" << "3. Customer Sale \n" << "4. Add to Rainbow Waitlist\n"<< "5. Show Sales Report\n" <<"0. Exit" << endl;
         getline(cin, option);
         if (option == "1") {
             //Add logic
@@ -95,7 +96,7 @@ generateSalesReport();
                 while (true) {
                     // Get year info
                     cout << "\nEnter the current day of the month: ";
-                   cin >> day;
+                    cin >> day;
                     cout << "\nEnter the current month abbreviation (January = Jan): ";
                     cin >> month;
                     cout << "\nEnter the current year: ";
@@ -155,14 +156,14 @@ generateSalesReport();
         	cin>>id;
         	orderRainbow(id);
         }
-
-        else if(option=="5"){
-        	//Add function to display sales report
-        }
-
+        else if (option == "5") {
+            printSalesReport();
+ }
         else if (option == "0") {
             cout << "Bye!";
+            
             break;
+
         }
         else {
             cout << "Invalid Option" << endl;
