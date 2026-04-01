@@ -2,6 +2,8 @@
 using namespace std;
 #include "model.h"
 #include <fstream>
+#include <sstream>
+#include <string>
 
 
 
@@ -21,13 +23,18 @@ void generateSalesReport() {
 	cout << "Successfully Generated Sales Report!" << endl;
 }
 
-// Python code I had left over that includes some ascii for making a gameboard could use it for table display
-// def display(gb):
-//     # 2D array representing game board
-//     print("\u250f\u2501\u2533\u2501\u2533\u2501\u2513")
-//     print("\u2503", gb[0][0],"\u2503", gb[0][1], "\u2503", gb[0][2], "\u2503", sep='')
-//     print("\u2523\u2501\u254b\u2501\u252b\u2501\u252b")
-//     print("\u2503", gb[1][0],"\u2503", gb[1][1], "\u2503", gb[1][2], "\u2503", sep='')
-//     print("\u2523\u2501\u254b\u2501\u252b\u2501\u252b")
-//     print("\u2503", gb[2][0],"\u2503", gb[2][1], "\u2503", gb[2][2], "\u2503", sep='')
-
+void printSalesReport() {
+	string data, name, sales, comission;
+	ifstream sReport("SalesReport.txt");
+	if (!sReport.is_open()) {
+		cout << "Error Opening SalesReport.txt" << endl;
+	}
+	cout << " " << endl;
+	while (getline(sReport, data)) {
+		stringstream ss(data);
+		getline(ss, name, ';');
+		getline(ss, sales, ';');
+		getline(ss, comission, ';');
+		cout << "Name: " << name << "\tSales: " << sales << "\tCommisions: " << comission << endl;
+	}
+}
