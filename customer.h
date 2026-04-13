@@ -22,10 +22,11 @@ class customer{
         string id;
         string city;
         string state;
+        string passsword;
         std:: vector<Ordering> orders;
 
     public:
-        customer(string id, string first_name, string last_name, string address, string city,  string state, string zip_code){
+        customer(string id, string first_name, string last_name, string address, string city,  string state, string zip_code, string password){
             this->id = id;
             this->first_name = first_name;
             this->last_name = last_name;
@@ -33,6 +34,7 @@ class customer{
             this->city = city;
             this->state = state;
             this->zip_code = zip_code;
+            this->password = password;
         }
         string get_address(){return address;}
         string get_zip_code(){return zip_code;}
