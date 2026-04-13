@@ -102,18 +102,7 @@ int searchId(string id){
     //if no customer found returns -1
     return -1;
 }
-int searchPassword(string password){
-    //Function that finds a customer by ID returns the index of that customers location in the customer list vector, if no customer returns -1
-    string selectedNumber;
-    //Loop for locating customer with given ID
-    for(int i = 0; i < customerList.size(); i++){
-        if (customerList[i].get_password() == password){
-            return i;
-        }
-    }
-    //if no customer found returns -1
-    return -1;
-}
+
 
 int searchEmployee(string id){
     //Function that finds a customer by ID returns the index of that customers location in the customer list vector, if no customer returns -1
