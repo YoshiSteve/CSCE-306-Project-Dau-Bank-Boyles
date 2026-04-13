@@ -33,7 +33,7 @@ customer getRecord(int index){
 void import(){
     //Function to import customer records for quicker searching
     customerList.clear(); //Clears customer list so that importing again updates
-    string storage[7];
+    string storage[8];
     string temp;
     string fileIn;
     int size;
@@ -55,7 +55,7 @@ void import(){
         }
 
         //Creates a customer using the given data from storage then places into an array for later access
-        customerList.push_back(customer(storage[0], storage[1], storage[2], storage[3], storage[4], storage[5], storage[6]));
+        customerList.push_back(customer(storage[0], storage[2], storage[3], storage[4], storage[5], storage[6], storage[7], storage[1]));
 }
     infile.close();
 }
@@ -102,6 +102,18 @@ int searchId(string id){
     //if no customer found returns -1
     return -1;
 }
+int searchPassword(string password){
+    //Function that finds a customer by ID returns the index of that customers location in the customer list vector, if no customer returns -1
+    string selectedNumber;
+    //Loop for locating customer with given ID
+    for(int i = 0; i < customerList.size(); i++){
+        if (customerList[i].get_password() == password){
+            return i;
+        }
+    }
+    //if no customer found returns -1
+    return -1;
+}
 
 int searchEmployee(string id){
     //Function that finds a customer by ID returns the index of that customers location in the customer list vector, if no customer returns -1
@@ -119,6 +131,7 @@ int searchEmployee(string id){
 void customerAdd(){
     //Prompts user for Inputs and generates unique id then puts customer at back of customer list and puts info into customers.txt
     string id, first_name, last_name, address, city, state, zip_code;
+    string password = "tribbles";
     char filename[] = "customers.txt";
     cout << "Enter First Name: ";
     getline(cin, first_name); 
@@ -146,7 +159,7 @@ void customerAdd(){
         }
     }
     //Places new customer onto customerList vector
-    customerList.push_back(customer(id, first_name, last_name, address, city, state, zip_code));
+    customerList.push_back(customer(id, first_name, last_name, address, city, state, zip_code, password));
     ofstream outfile(filename, ios::app);
     if (!outfile) {
         cerr << "Error - cannot open "<< filename << endl;
