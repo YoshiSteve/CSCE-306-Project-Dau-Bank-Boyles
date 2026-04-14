@@ -243,4 +243,20 @@ void employeeImport(){
     }
 
 }
+bool check_Password(string id, string p){
+    string pass=decryptString(p);
+
+    if(searchId(id)==-1){
+        return false; 
+    }
+    customer cust=getRecord(searchId(id));
+    if(cust.get_password()==pass){
+            return true;
+    }
+    else{
+        return false; 
+    }
+};
+#endif
+
 #endif
