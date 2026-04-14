@@ -257,6 +257,11 @@ bool check_Password(string id, string p){
         return false; 
     }
 };
-#endif
 
+void change_Password(string id, string p){
+    string pass= encryptString(p); 
+    customer cust=getRecord(searchId(id)); 
+    cust.set_password(pass); 
+    
+}
 #endif
