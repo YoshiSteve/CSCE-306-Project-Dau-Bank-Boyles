@@ -162,6 +162,7 @@ generateSalesReport();
  }
         else if (option == "6") {
             bool customer_match;
+            customer foundCust;
             while (true) {
                 string c_id;
                 string pass;
@@ -174,6 +175,7 @@ generateSalesReport();
                 // COnfirmation functions
                 customer_match = check_Password(c_id, pass); // temp var until functions exist
                 if (customer_match) {
+                    foundCust = getRecord(searchId(c_id))
                     break;
                 }
                 else if (c_id == "0" && pass == "0") {
@@ -187,7 +189,7 @@ generateSalesReport();
                 string cust_choice;
               
                 while (cust_choice != "0") {
-                    cout << "Welcome!" << endl;
+                    cout << "Welcome " << foundCust.get_first_name() << "!" << endl;
                     cout << "Please enter the number of the option you want" << endl;
                     cout << "1. Change Password \n2. Order History \n3. Place Order \n0. Exit" << endl;
                     cout << " \n";
@@ -195,9 +197,15 @@ generateSalesReport();
                     cin >> cust_choice;
                     if (cust_choice == "1") {
                         // TODO change password logic
+                        cout << "Enter a new password:";
+                        getline(cin, password);
+                        cout << endl;
+                        change_Password(foundCust.get_id(), password);
+                        cout << "New password set to " << password << "." << endl;
                     }
                     else if (cust_choice == "2") {
-                        // TODO Order History Logic
+                        cout << "Displaying Orders" << endl;
+                        foundCust.showOrders();
                     }
                     else if (cust_choice == "3") {
                         // TODO Place Order Logic
