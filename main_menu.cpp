@@ -216,37 +216,22 @@ generateSalesReport();
                         auto now = std::chrono::system_clock::now();
                         std::chrono::year_month_day ymd{std::chrono::floor<std::chrono::days>(now)};
                         unsigned m = (unsigned)ymd.month(); // Month as number (1-12)
-                        std::cout << "Month: " << m << std::endl;
-                        string month = m
-                        string day;
-                        string year;
+                        string month = findMonth(m);
+                        string day = to_string(ymd.day());
+                        string year = to_string(ymd.year());
                         string shortened_year;
                         string merged_date;
                         int amount;
                         int customer_index;
                         while (true) {
-                            // get customer ID info
-                            if (customer_index == -1) { break; }
-                            while (true) {
-                                // Get year info
-                                cout << "\nEnter the current day of the month: ";
-                                cin >> day;
-                                cout << "\nEnter the current month abbreviation (January = Jan): ";
-                                cin >> month;
-                                cout << "\nEnter the current year: ";
-                                cin >> year;
-                                int int_year = stoi(year) % 100;
-                                shortened_year = to_string(int_year);
-                                merged_date = day + "-" + month + "-" + shortened_year;
-                                break;
+    
+                            int int_year = stoi(year) % 100;
+                            shortened_year = to_string(int_year);
+                            merged_date = day + "-" + month + "-" + shortened_year;
+                                
 
-                            }
+                            
                             while (true) {
-                                string choice;
-                                // get tribble amount and price buyer wants
-                                cout<< "\nWould you like to buy regular or rainbow tribbles? (1 for regular,  2 for rainbow): ";
-                                cin >> choice;
-                                if( choice=="1"){
                                 cout << "\nEnter the amount of tribbles the customer wants to buy: ";
                                 try {
                                     cin >> amount;
@@ -256,14 +241,6 @@ generateSalesReport();
                                 catch (invalid_argument) {
                                     cout << "You can only buy between 1 and 5 tribbles" << endl;;
                                 }
-
-                                }
-                                if(choice=="2"){
-                                        c_id=sellRainbow(merged_date);
-                                        amount=1;
-                                        price=0;
-                                        break;
-
 
                                 }
 
@@ -288,6 +265,7 @@ generateSalesReport();
                     else if (cust_choice == "0") {
                         cout << "Bye!" << endl;
                         cout << " \n";
+                        foundCust = NULL;
                         break;
                     }
                     else
