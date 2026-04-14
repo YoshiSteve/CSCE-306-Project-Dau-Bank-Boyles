@@ -172,7 +172,7 @@ generateSalesReport();
                 cout << "Enter Password: " << endl;
                 cin >> pass;
                 // COnfirmation functions
-                customer_match = true; // temp var until functions exist
+                customer_match = check_Password(c_id, pass); // temp var until functions exist
                 if (customer_match) {
 
                     break;
