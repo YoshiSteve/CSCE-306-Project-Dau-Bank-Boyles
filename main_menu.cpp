@@ -15,7 +15,7 @@
 using namespace std;
 
 int main() {
-string option;
+    string option;
 import(); //Function that imports the data into an array for use
 employeeImport();
 load_orders();
@@ -27,7 +27,7 @@ generateSalesReport();
 
         //Menu logic, prompts user to enter a number then runs programs
         cout << "Welcome! Please Type the number of the option you want." << endl;
-        cout << "1. Add a Customer \n" << "2. Search for a customer \n" << "3. Customer Sale \n" << "4. Add to Rainbow Waitlist\n"<< "5. Show Sales Report\n" <<"0. Exit" << endl;
+        cout << "1. Add a Customer \n" << "2. Search for a customer \n" << "3. Customer Sale \n" << "4. Add to Rainbow Waitlist\n"<< "5. Show Sales Report\n" << "6. Customer Portal\n" << "0. Exit" << endl;
         getline(cin, option);
         if (option == "1") {
             //Add logic
@@ -58,6 +58,7 @@ generateSalesReport();
                 }
                 else {
                     cout << "Invalid Selection" << endl;
+                    
                 }
             }
             if (foundIndex == -1) {
@@ -159,6 +160,68 @@ generateSalesReport();
         else if (option == "5") {
             printSalesReport();
  }
+        else if (option == "6") {
+            bool customer_match;
+            while (true) {
+                string c_id;
+                string pass;
+               
+                cout << "Please Sign in or '0' for both inputs to Exit the Menu" << endl;
+                cout << "Enter Customer ID: " << endl;
+                cin >> c_id;
+                cout << "Enter Password: " << endl;
+                cin >> pass;
+                // COnfirmation functions
+                customer_match = true; // temp var until functions exist
+                if (customer_match) {
+
+                    break;
+                }
+                else if (c_id == "0" && pass == "0") {
+                    break;
+                }
+                else {
+                    cout << "Incorrect Username or Password" << endl;
+                }
+            } 
+            if (customer_match){
+                string cust_choice;
+              
+                while (cust_choice != "0") {
+                    cout << "Welcome!" << endl;
+                    cout << "Please enter the number of the option you want" << endl;
+                    cout << "1. Change Password \n2. Order History \n3. Place Order \n0. Exit" << endl;
+                    cout << " \n";
+           
+                    cin >> cust_choice;
+                    if (cust_choice == "1") {
+                        // TODO change password logic
+                    }
+                    else if (cust_choice == "2") {
+                        // TODO Order History Logic
+                    }
+                    else if (cust_choice == "3") {
+                        // TODO Place Order Logic
+                    }
+                    else if (cust_choice == "0") {
+                        cout << "Bye!" << endl;
+                        cout << " \n";
+                        break;
+                    }
+                    else
+                    {
+                        cout << "Option not available" << endl;
+                        cout << " \n";
+                        continue;
+                    }
+                    break;
+                }
+                
+            }
+            
+        }
+
+
         else if (option == "0") {
             cout << "Bye!";
             
@@ -167,6 +230,9 @@ generateSalesReport();
         }
         else {
             cout << "Invalid Option" << endl;
+            cout << " \n" << endl;
+            continue;
         }
+
     }
 }
