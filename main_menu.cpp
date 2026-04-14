@@ -174,7 +174,6 @@ generateSalesReport();
                 // COnfirmation functions
                 customer_match = check_Password(c_id, pass); // temp var until functions exist
                 if (customer_match) {
-
                     break;
                 }
                 else if (c_id == "0" && pass == "0") {

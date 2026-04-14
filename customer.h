@@ -74,6 +74,16 @@ void customer::print(){
     }
 }
 
+void customer::showOrders(){
+    for(int i=0; i < orders.size(); i++){
+    		cout<<"-------------------"<<endl;
+    		cout<< "Order Id: "<< orders[i].get_orderID()<<endl;
+    		cout<< " Date: "<< orders[i].get_date()<<endl;
+    		cout<< " Number: "<< orders[i].get_tribbleNum()<<endl;
+    		cout<< " Payment:  $"<< orders[i].get_payment()<<endl;
+    	}
+}
+
 
 
 #endif /*CUSTOMER_H_ */
