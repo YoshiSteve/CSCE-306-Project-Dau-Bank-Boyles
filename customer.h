@@ -43,6 +43,7 @@ class customer{
         string get_id(){return id;}
         string get_state(){return state;}
         string get_city(){return city;}
+        string get_password(){return password;}
         void set_city(string c){city = c;}
         void set_state(string s){state = s;}
         void set_address(string a){address = a;}
@@ -51,6 +52,7 @@ class customer{
         void set_lastName(string l){last_name = l;}
         void set_id(string i){id = i;}
         void addOrder(const Ordering& o){orders.push_back(o);}
+        void set_password(string p){password=p;}
         void print();
 };
 
