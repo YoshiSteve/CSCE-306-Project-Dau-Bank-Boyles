@@ -9,6 +9,7 @@
 #include <cmath>
 #include <fstream>
 #include <iomanip>
+#include <chrono>
 #include "model.h"
 #include "trans_class.h"
 #include "SalesReport.h"
@@ -209,6 +210,80 @@ generateSalesReport();
                     }
                     else if (cust_choice == "3") {
                         // TODO Place Order Logic
+                        string input;
+                        string c_id = foundCust.get_id();
+                        double price;
+                        auto now = std::chrono::system_clock::now();
+                        std::chrono::year_month_day ymd{std::chrono::floor<std::chrono::days>(now)};
+                        unsigned m = (unsigned)ymd.month(); // Month as number (1-12)
+                        std::cout << "Month: " << m << std::endl;
+                        string month = m
+                        string day;
+                        string year;
+                        string shortened_year;
+                        string merged_date;
+                        int amount;
+                        int customer_index;
+                        while (true) {
+                            // get customer ID info
+                            if (customer_index == -1) { break; }
+                            while (true) {
+                                // Get year info
+                                cout << "\nEnter the current day of the month: ";
+                                cin >> day;
+                                cout << "\nEnter the current month abbreviation (January = Jan): ";
+                                cin >> month;
+                                cout << "\nEnter the current year: ";
+                                cin >> year;
+                                int int_year = stoi(year) % 100;
+                                shortened_year = to_string(int_year);
+                                merged_date = day + "-" + month + "-" + shortened_year;
+                                break;
+
+                            }
+                            while (true) {
+                                string choice;
+                                // get tribble amount and price buyer wants
+                                cout<< "\nWould you like to buy regular or rainbow tribbles? (1 for regular,  2 for rainbow): ";
+                                cin >> choice;
+                                if( choice=="1"){
+                                cout << "\nEnter the amount of tribbles the customer wants to buy: ";
+                                try {
+                                    cin >> amount;
+                                    price = get_price(amount);
+                                    break;
+                                }
+                                catch (invalid_argument) {
+                                    cout << "You can only buy between 1 and 5 tribbles" << endl;;
+                                }
+
+                                }
+                                if(choice=="2"){
+                                        c_id=sellRainbow(merged_date);
+                                        amount=1;
+                                        price=0;
+                                        break;
+
+
+                                }
+
+                            }
+                            // confirm data and write to files
+                            cout << "Are you sure about this info" << endl;
+                            cout << "Input '1' for yes, '2' for no" << endl;
+                            cout << " " << endl;
+                            cout << "ID: " << c_id << endl;
+                            cout << "Date: " << merged_date << endl;
+                            cout << amount << " Tribbles for $" << price << endl;
+                            cin >> input;
+                            if (input == "1"){
+                                write_order(c_id, merged_date, amount, price);
+                                cout << " " << endl;
+                                break;
+                            }
+                        }
+                    }
+
                     }
                     else if (cust_choice == "0") {
                         cout << "Bye!" << endl;
