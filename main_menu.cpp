@@ -199,9 +199,41 @@ generateSalesReport();
                     getline(cin, cust_choice);
                     if (cust_choice == "1") {
                         //change password logic
-                        cout << "Enter a new password:";
+                        while(true){
+                        bool flag = true;
+                        cout << "Enter a new password(Enter 0 to exit):";
                         getline(cin, password);
                         cout << endl;
+                        //Password length validation
+                        if(password.length() > 3){
+                            for(int i = 0; i<password.length(); i++){
+                                //Password character validation. Uses ascii value to determine if a character is good or not
+                                if(96 < (int)password[i] && (int)password[i] < 123){
+                                    //Lower case letters
+                                    continue;
+                                }
+                                else if (64 < (int)password[i] && (int)password[i] < 91){
+                                    //Upper case letters
+                                    continue;
+                                }
+                                else if(47 < (int)password[i] &&  (int)password[i] < 58){
+                                    //Numbers
+                                    continue;
+                                }
+                                else{
+                                    flag = false;
+                                    cout << "Use only Alphanumeric characters." << endl;
+                                    break;
+                                }
+                            }
+                        }else{
+                            cout << "Password must be 4 characters or longer." << endl;
+                            flag = false;
+                        }
+                        if(flag){
+                            break;
+                        }
+                        }
                         foundCust->set_password(password);
                         cout << "New password set to " << password << "." << endl;
                     }
