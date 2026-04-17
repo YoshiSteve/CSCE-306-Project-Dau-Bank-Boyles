@@ -172,7 +172,7 @@ Rainbow rainbow;
 
 void orderRainbow(string custID){
 // make rainbow purchase if it is available
-	fstream rain("rainbowList.txt");
+	ofstream rain("rainbowList.txt", ios::app);
 	if (!rain.is_open()) {
 			    cout << "Error opening file to write rainbow order";
 	}
@@ -183,7 +183,7 @@ void orderRainbow(string custID){
 
 	rain.close();
 
-	cout<<custID<<" has been added to the waitlist";
+	cout<<custID<<" has been added to the waitlist"<<endl;
 
 }
 string sellRainbow(string date){
