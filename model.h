@@ -23,6 +23,7 @@
 #include "customer.h"
 #include "Employees.h"
 
+
 using namespace std;
 std::vector<customer> customerList;
 std::vector<Employee*> employeeList;
@@ -53,7 +54,6 @@ void import(){
             storage[i] = temp; //stores current piece of data into storage array
             i++;
         }
-
         //Creates a customer using the given data from storage then places into an array for later access
         customerList.push_back(customer(storage[0], storage[2], storage[3], storage[4], storage[5], storage[6], storage[7], storage[1]));
 }
@@ -148,14 +148,14 @@ void customerAdd(){
         }
     }
     //Places new customer onto customerList vector
-    customerList.push_back(customer(id, first_name, last_name, address, city, state, zip_code, password));
+    customerList.push_back(customer(id, first_name, last_name, address, city, state, zip_code, encryptString(password)));
     ofstream outfile(filename, ios::app);
     if (!outfile) {
         cerr << "Error - cannot open "<< filename << endl;
         exit (1);
     }
     //Puts new customer at end of file with correct formatting
-    outfile << id + ";" + first_name + ";" + last_name + ";" + address + ";" + city + ";" + state + ";" + zip_code + "\n";
+    outfile << id + ";" + encryptString("tribbles") + ";" + first_name + ";" + last_name + ";" + address + ";" + city + ";" + state + ";" + zip_code + "\n";
     outfile.close();
     cout << "Customer Successfully added!" << endl;
 }
@@ -244,13 +244,13 @@ void employeeImport(){
 
 }
 bool check_Password(string id, string p){
-    string pass=decryptString(p);
+//Function to check if a certain id exists and if it does, then checks if the password matches.
 
     if(searchId(id)==-1){
         return false; 
     }
     customer cust=getRecord(searchId(id));
-    if(cust.get_password()==pass){
+    if(cust.get_password()==encryptString(p)){
             return true;
     }
     else{
@@ -258,26 +258,30 @@ bool check_Password(string id, string p){
     }
 };
 
-void change_Password(string id, string p){
-    string pass= encryptString(p); 
-    customer cust=getRecord(searchId(id)); 
-    cust.set_password(pass); 
-    
-}
-
-string findMonth(int month){
-    if (month == 1){return "Jan";}
-    else if (month == 2){return "Feb";}
-    else if (month == 3){return "Mar";}
-    else if (month == 4){return "Apr";}
-    else if (month == 5){return "May";}
-    else if (month == 6){return "Jun";}
-    else if (month == 7){return "Jul";}
-    else if (month == 8){return "Aug";}
-    else if (month == 9){return "Sep";}
-    else if (month == 10){return "Oct";}
-    else if (month == 11){return "Nov";}
-    else if (month == 12){return "Dec";}
-    else {return "goober";}
+void save(){
+    char filename[] = "customers.txt";
+    //Function to save data at the end of the program
+    ofstream outfile(filename, ios::trunc);
+    if (!outfile) {
+        cerr << "Error - cannot open "<< filename << endl;
+        exit (1);
+    }
+    outfile.close();
+    ofstream savedata(filename, ios::app);
+    if (!savedata) {
+        cerr << "Error - cannot open "<< filename << endl;
+        exit (1);
+    }
+    string previd = customerList[0].get_id();
+    savedata << customerList[0].get_id() + ";" + customerList[0].get_password() + ";" + customerList[0].get_first_name() + ";" + customerList[0].get_last_name() + ";" + customerList[0].get_address() + ";" + customerList[0].get_city() + ";" + customerList[0].get_state() + ";" + customerList[0].get_zip_code() + "\n";
+    //Puts customers at end of file with correct formatting
+    for(int i = 1; i < customerList.size(); i++){
+        if(previd != customerList[i].get_id()){
+            savedata << customerList[i].get_id() + ";" + customerList[i].get_password() + ";" + customerList[i].get_first_name() + ";" + customerList[i].get_last_name() + ";" + customerList[i].get_address() + ";" + customerList[i].get_city() + ";" + customerList[i].get_state() + ";" + customerList[i].get_zip_code() + "\n";
+        }
+        previd = customerList[i].get_id();
+    }
+    savedata.close();
+    cout << "Customer file successfully saved!" << endl;
 }
 #endif

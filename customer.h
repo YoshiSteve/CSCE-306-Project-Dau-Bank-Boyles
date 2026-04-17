@@ -9,6 +9,7 @@
 #ifndef CUSTOMER_H_
 #define CUSTOMER_H_
 #include <iostream>
+#include "cipher.h"
 #include <vector>
 #include "Ordering.h"
 using namespace std;
@@ -22,10 +23,11 @@ class customer{
         string id;
         string city;
         string state;
-        string passsword;
+        string password;
         std:: vector<Ordering> orders;
 
     public:
+        customer(){}
         customer(string id, string first_name, string last_name, string address, string city,  string state, string zip_code, string password){
             this->id = id;
             this->first_name = first_name;
@@ -52,8 +54,9 @@ class customer{
         void set_lastName(string l){last_name = l;}
         void set_id(string i){id = i;}
         void addOrder(const Ordering& o){orders.push_back(o);}
-        void set_password(string p){password=p;}
+        void set_password(string p){password=encryptString(p);}
         void print();
+        void showOrders();
 };
 
 void customer::print(){
