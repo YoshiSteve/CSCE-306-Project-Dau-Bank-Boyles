@@ -179,7 +179,7 @@ void orderRainbow(string custID){
 
 	rainbow.add_Waitlist(custID);
 
-	rain<<custID;
+	rain<<custID << endl;
 
 	rain.close();
 
